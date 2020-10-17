@@ -1,0 +1,514 @@
+##
+# `git` Attributes Configurations
+#
+# Configures attribute mapping for `git` so diffs, processing, and content storage are properly managed on commit
+# based on file pattern matching.
+#
+# @see the [git documentation on attributes][git-attributes] for more information.
+# @see information on [git-lfs][git-lfs] for how Large File Storage works.
+#
+# @author Andrew Vaughan [gh:andrewvaughan] <andrew@aviame.com>
+#
+# @version 2020-09-01 - Andrew Vaughan [gh:andrewvaughan] - Initial authoring
+# @version 2020-10-21 - Andrew Vaughan [gh:andrewvaughan] - Customized for Aviame
+
+
+##
+# @section Auto-Detect Text for All Files
+#
+# For all files not explicitly listed, have `git` automatically handle line endings for files identified as text
+# files, and leave all files identified as binary untouched.
+#
+# By default, text-based files will convert to Linux standards on commit.
+#
+# @since 2020-09-01
+
+*  text=auto  eol=lf
+
+
+## -------------------------------------------------------------------------------------------------------------------
+
+
+##
+# @section [docs] Documentation
+#
+# File patterns associated with documentation.
+#
+# @since 2020-09-01
+
+*.markdown  text  eol=lf  diff=markdown
+*.md        text  eol=lf  diff=markdown
+*.mdown     text  eol=lf  diff=markdown
+*.mdtext    text  eol=lf  diff=markdown
+*.mdtxt     text  eol=lf  diff=markdown
+*.mdwn      text  eol=lf  diff=markdown
+*.mkd       text  eol=lf  diff=markdown
+*.mkdn      text  eol=lf  diff=markdown
+*.txt       text  eol=lf
+
+
+##
+# @section Jekyll Documentation Generation
+# @parent  docs
+#
+# Files associated with GitHub pages and Jekyll.
+#
+# @since 2020-09-01
+
+_config.yml       text  eol=lf
+.jekyll-metadata  text  eol=lf
+
+
+##
+# @section GitHub Special Files
+# @parent  docs
+#
+# Files associated with GitHub that are used for specific purposes and/or automation.
+#
+# @see more information on [CODEOWNERS][gh-codeowners]
+# @see more information on [CODE_OF_CONDUCT][gh-code_of_conduct]
+# @see more information on [CONTRIBUTING][gh-contributing]
+# @see more information on [FUNDING][gh-funding]
+# @see more information on [ISSUE_TEMPLATE][gh-issue_template]
+# @see more information on [LICENSE][gh-license]
+# @see more information on [PULL_REQUEST_TEMPLATE][gh-pull_request_template]
+# @see more information on [README][gh-readme]
+# @see more information on [SECURITY][gh-security]
+# @see more information on [SUPPORT][gh-support]
+#
+# @since 2020-09-01
+
+CODEOWNERS*             text  eol=lf
+CODE_OF_CONDUCT*        text  eol=lf
+CONTRIBUTING*           text  eol=lf
+FUNDING*                text  eol=lf
+ISSUE_TEMPLATE*         text  eol=lf
+LICENSE*                text  eol=lf
+PULL_REQUEST_TEMPLATE*  text  eol=lf
+README*                 text  eol=lf
+SECURITY*               text  eol=lf
+SUPPORT*                text  eol=lf
+
+
+##
+# @section GitHub Community Commonly-Used Files
+# @parent  docs
+#
+# Files that are common in the GitHub community, but are not used by the GitHub platform for any automation or
+# specific purpose.
+#
+# @see more information on keeping a good [CHANGELOG][changelog] / [CHANGES][changelog] file.
+#
+# @since 2020-09-01
+
+ACKNOWLEDGMENTS*  text  eol=lf
+AUTHORS*          text  eol=lf
+CHANGELOG*        text  eol=lf
+CHANGES*          text  eol=lf
+CONTRIBUTORS*     text  eol=lf
+HISTORY*          text  eol=lf
+NEWS*             text  eol=lf
+RELEASES*         text  eol=lf
+
+
+## -------------------------------------------------------------------------------------------------------------------
+
+
+##
+# @section [source] Source Control Files
+#
+# These files are specific to different types of programming languages and various source utilities.
+
+
+##
+# @section Assembly
+# @parent  source
+#
+# Files associated with assembly languages.
+#
+# @since 2020-09-01
+
+*.asm  text  eol=lf
+*.out  filter=lfs   diff=lfs   merge=lfs   -text
+*.s    text  eol=lf
+
+
+##
+# @section C / C++
+# @parent  source
+#
+# Files associated with C-style languages.
+#
+# @since 2020-09-01
+
+*.c    text  eol=lf  diff=c
+*.c++  text  eol=lf  diff=cpp
+*.cc   text  eol=lf  diff=cpp
+*.cpp  text  eol=lf  diff=cpp
+*.cxx  text  eol=lf  diff=cpp
+*.gch  binary
+*.h    text  eol=lf  diff=c
+*.h++  text  eol=lf  diff=cpp
+*.hh   text  eol=lf  diff=cpp
+*.hpp  text  eol=lf  diff=cpp
+*.inc  text  eol=lf  eol=lf
+*.ino  text  eol=lf  diff=cpp
+*.lo   binary
+*.o    binary
+*.obj  binary
+*.slo  binary
+
+
+##
+# @section Configuration and Data
+# @parent  source
+#
+# Files associated with scripting and data modeling.
+#
+# @since 2020-09-01
+
+*.ini   text
+*.json  text
+*.sql   text
+*.xml   text
+
+
+##
+# @section Java
+# @parent  source
+#
+# Files associated with Java languages.
+#
+# @since 2020-09-01
+
+*.java  text  diff=java
+*.tag   text
+
+
+##
+# @section Libraries
+# @parent  source
+#
+# Library compilations from source.
+#
+# @since 2020-09-01
+
+*.a    binary
+*.la   binary
+*.lai  binary
+*.lib  binary
+*.so   binary
+
+
+##
+# @section Linux Development
+# @parent  source
+#
+# Files associated with Linux-style scripting and service development.
+#
+# @since 2020-09-01
+
+*.sh  text  eol=lf
+
+
+##
+# @section macOS Development
+# @parent  source
+#
+# Files associated primarily with macOS development.
+#
+# @since 2020-09-01
+
+*.app    filter=lfs   diff=lfs   merge=lfs   -text
+*.dylib  binary
+
+
+##
+# @section Python
+# @parent  source
+#
+# Files related to Python development.
+#
+# @since 2020-09-01
+
+*.py   text  diff=python
+*.pyc  filter=lfs   diff=lfs   merge=lfs   -text
+
+
+##
+# @section Templates
+# @parent  source
+#
+# Templating files for content systems.
+#
+# @since 2020-09-01
+
+*.dot         text
+*.ejs         text
+*.haml        text
+*.handlebars  text
+*.hbs         text
+*.hbt         text
+*.jade        text
+*.latte       text
+*.mustache    text
+*.njk         text
+*.phtml       text
+*.tmpl        text
+*.tpl         text
+*.twig        text
+
+
+##
+# @section Web Development
+# @parent  source
+#
+# Files associated with web-development languages.
+#
+# @since 2020-09-01
+
+*.coffee  text
+*.css     text  diff=css
+*.htm     text  diff=html
+*.html    text  diff=html
+*.js      text
+*.jsx     text
+*.less    text
+*.php     text  diff=php
+*.rb      text  diff=ruby
+*.sass    text
+*.scss    text
+*.ts      text
+*.xhtml   text  diff=html
+*.pl      text  diff=perl
+*.styl    text
+*.tsx     text
+*.vue     text
+
+
+##
+# @section Windows and Microsoft Files
+# @parent  source
+#
+# Files associated with Windows and Microsoft specific systems.
+#
+# @since 2020-09-01
+
+*.bat  text  eol=crlf
+*.dll  binary
+*.exe  filter=lfs   diff=lfs   merge=lfs   -text
+*.sln  text  eol=crlf
+
+
+## -------------------------------------------------------------------------------------------------------------------
+
+
+##
+# @section [ops] Operations and Configurations
+#
+# These files are specific to various operations utilities and configurations.
+
+
+##
+# @section Configurations
+# @parent  ops
+#
+# Various configuration files for build systems and utilities.
+#
+# @since 2020-09-01
+
+*.bowerrc        text
+*.cnf            text
+*.conf           text
+*.config         text
+.babelrc         text
+.browserslistrc  text
+.editorconfig    text
+.env             text
+.gitattributes   text
+.gitconfig       text
+.htaccess        text
+*.lock           text
+*.npmignore      text
+*.yaml           text
+*.yml            text
+browserslist     text
+Makefile         text
+makefile         text
+
+
+##
+# @section Docker
+# @parent  ops
+#
+# Files associated with Docker.
+#
+# @since 2020-09-01
+
+*.dockerignore  text
+Dockerfile      text
+Dockerfile.*    text
+
+
+##
+# @section Linting
+# @parent  ops
+#
+# Files that manage configurations for linting and syntax checking.
+#
+# @since 2020-09-01
+
+.csslintrc     text
+.eslintrc      text
+.htmlhintrc    text
+.jscsrc        text
+.jshintrc      text
+.jshintignore  text
+.stylelintrc   text
+
+
+## -------------------------------------------------------------------------------------------------------------------
+
+
+##
+# @section [media] Media Files
+#
+# These files contain various media for images, video, audio, typography, and more.
+
+
+##
+# @section Audio
+# @parent  media
+#
+# Audio files and waveforms.
+#
+# @since 2020-09-01
+
+*.kar   filter=lfs   diff=lfs   merge=lfs   -text
+*.m4a   filter=lfs   diff=lfs   merge=lfs   -text
+*.mid   filter=lfs   diff=lfs   merge=lfs   -text
+*.midi  filter=lfs   diff=lfs   merge=lfs   -text
+*.mp3   filter=lfs   diff=lfs   merge=lfs   -text
+*.ogg   filter=lfs   diff=lfs   merge=lfs   -text
+*.ra    filter=lfs   diff=lfs   merge=lfs   -text
+
+
+##
+# @section Fonts and Typography
+# @parent  media
+#
+# Files used for typography.
+#
+# @since 2020-09-01
+
+*.ttf    filter=lfs   diff=lfs   merge=lfs   -text
+*.eot    filter=lfs   diff=lfs   merge=lfs   -text
+*.otf    filter=lfs   diff=lfs   merge=lfs   -text
+*.woff   filter=lfs   diff=lfs   merge=lfs   -text
+*.woff2  filter=lfs   diff=lfs   merge=lfs   -text
+
+
+##
+# @section Graphics and Images
+# @parent  media
+#
+# Images and still assets for graphics.
+#
+# @since 2020-09-01
+
+*.ai    filter=lfs   diff=lfs   merge=lfs   -text
+*.bmp   filter=lfs   diff=lfs   merge=lfs   -text
+*.eps   filter=lfs   diff=lfs   merge=lfs   -text
+*.gif   filter=lfs   diff=lfs   merge=lfs   -text
+*.ico   filter=lfs   diff=lfs   merge=lfs   -text
+*.jng   filter=lfs   diff=lfs   merge=lfs   -text
+*.jp2   filter=lfs   diff=lfs   merge=lfs   -text
+*.jpg   filter=lfs   diff=lfs   merge=lfs   -text
+*.jpeg  filter=lfs   diff=lfs   merge=lfs   -text
+*.jpx   filter=lfs   diff=lfs   merge=lfs   -text
+*.jxr   filter=lfs   diff=lfs   merge=lfs   -text
+*.pdf   filter=lfs   diff=lfs   merge=lfs   -text
+*.png   filter=lfs   diff=lfs   merge=lfs   -text
+*.psb   filter=lfs   diff=lfs   merge=lfs   -text
+*.psd   filter=lfs   diff=lfs   merge=lfs   -text
+*.svg   text
+*.svgz  filter=lfs   diff=lfs   merge=lfs   -text
+*.tif   filter=lfs   diff=lfs   merge=lfs   -text
+*.tiff  filter=lfs   diff=lfs   merge=lfs   -text
+*.wbmp  filter=lfs   diff=lfs   merge=lfs   -text
+*.webp  filter=lfs   diff=lfs   merge=lfs   -text
+
+
+##
+# @section Video
+# @parent  media
+#
+# Moving images and video files.
+#
+# @since 2020-09-01
+
+*.3gpp  filter=lfs   diff=lfs   merge=lfs   -text
+*.3gp   filter=lfs   diff=lfs   merge=lfs   -text
+*.as    filter=lfs   diff=lfs   merge=lfs   -text
+*.asf   filter=lfs   diff=lfs   merge=lfs   -text
+*.asx   filter=lfs   diff=lfs   merge=lfs   -text
+*.fla   filter=lfs   diff=lfs   merge=lfs   -text
+*.flv   filter=lfs   diff=lfs   merge=lfs   -text
+*.m4v   filter=lfs   diff=lfs   merge=lfs   -text
+*.mng   filter=lfs   diff=lfs   merge=lfs   -text
+*.mov   filter=lfs   diff=lfs   merge=lfs   -text
+*.mp4   filter=lfs   diff=lfs   merge=lfs   -text
+*.mpeg  filter=lfs   diff=lfs   merge=lfs   -text
+*.mpg   filter=lfs   diff=lfs   merge=lfs   -text
+*.ogv   filter=lfs   diff=lfs   merge=lfs   -text
+*.swc   filter=lfs   diff=lfs   merge=lfs   -text
+*.swf   filter=lfs   diff=lfs   merge=lfs   -text
+*.webm  filter=lfs   diff=lfs   merge=lfs   -text
+
+
+## -------------------------------------------------------------------------------------------------------------------
+
+
+##
+# @section [misc] Miscellaneous
+#
+# Other files that may be checked into repositories.
+
+
+##
+# @section Archives
+# @parent  misc
+#
+# Compressed files.
+#
+# @since 2020-09-01
+
+*.7z   filter=lfs   diff=lfs   merge=lfs   -text
+*.gz   filter=lfs   diff=lfs   merge=lfs   -text
+*.jar  filter=lfs   diff=lfs   merge=lfs   -text
+*.rar  filter=lfs   diff=lfs   merge=lfs   -text
+*.tar  filter=lfs   diff=lfs   merge=lfs   -text
+*.zip  filter=lfs   diff=lfs   merge=lfs   -text
+
+
+
+
+
+##
+# @references
+#
+# [changelog]:                https://keepachangelog.com
+#
+# [gh-code_of_conduct]:       https://bit.ly/34OkVO8
+# [gh-codeowners]:            https://bit.ly/3dnDHj8
+# [gh-contributing]:          https://bit.ly/3iTvnsz
+# [gh-funding]:               https://bit.ly/3lzb2dI
+# [gh-issue-template]:        https://bit.ly/3nMDcnm
+# [gh-license]:               https://bit.ly/3do4qME
+# [gh-pull-request-template]: https://bit.ly/312FuVI
+# [gh-readme]:                https://bit.ly/2GIOpVF
+# [gh-security]:              https://bit.ly/30XI3so
+# [gh-support]:               https://bit.ly/3jSi1hq
+#
+# [git-attributes]:           https://git-scm.com/docs/gitattributes
+# [git-lfs]:                  https://git-lfs.github.com/
