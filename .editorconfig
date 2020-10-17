@@ -1,0 +1,61 @@
+##
+# [EditorConfig][editorconfig] IDE Configurations
+#
+# Provides a series of configurations, based on file extension, to ensure consistency between IDEs when editing files.
+#
+# @see the [EditorConfig](https://editorconfig.org) project for further information.
+#
+# @author Andrew Vaughan [gh:andrewvaughan] <andrew@aviame.com>
+#
+# @version 2020-09-01 - Andrew Vaughan [gh:andrewvaughan] - Initial creation of tile for formatting consistency.
+# @version 2020-10-12 - Andrew Vaughan [gh:andrewvaughan] - Updated for Aviame standards repository.
+
+
+##
+# @section Root Designation
+#
+# Ensures that no `.editorconfig` files are processed above this file.
+#
+# @since 2020-09-01
+#
+root = true
+
+
+##
+# @section Editor Configuration Defaults
+#
+# @since 2020-09-01
+#
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+indent_style = space
+indent_size = 2
+
+# GitHub renders best with this line width
+max_line_length = 118
+
+
+##
+# @section Markdown
+#
+# Configure for best compatibility with both the GitHub markdown editor.
+#
+# @since 2020-09-01
+#
+[*.md, *.markdown]
+indent_style = space
+indent_size = 4
+
+
+##
+# @section Data Model Editor Configurations
+#
+# Allow for more data in limited space by using 2-spaces for data file indentation.
+#
+# @since 2020-09-01
+#
+[*.yml, *.yaml, *.json]
+indent_style = space
+indent_size = 2
